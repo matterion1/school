@@ -1,3 +1,86 @@
+function max(n1,n2:longint):longint;
+begin
+  if n1 > n2
+  then max := n1
+  else max := n2;
+end;
+
+procedure swap(var x,y:longint);
+var temp:longint;
+begin
+  temp := x;
+  x := y;
+  y := temp;
+end;
+
+procedure sort_not_falling(var a,b,c:longint);
+begin
+  if a > b
+  then swap(a,b);
+  if a > c
+  then swap(a,c);
+  if b > c
+  then swap(b,c);
+end;
+
+var cell1,cell2,cell3:longint;
+procedure swap(var x,y:longint);
+var temp:longint;
+begin
+  temp := x;
+  x := y;
+  y := temp;
+end;
+
+procedure sort_not_falling(var a,b,c:longint);
+begin
+  if a > b
+  then swap(a,b);
+  if a > c
+  then swap(a,c);
+  if b > c
+  then swap(b,c);
+end;
+
+function cnt_day_in_mon(mon,year:longint):byte;
+begin
+  case mon of
+    2: if (year mod 4 = 0) and (year mod 100 <> 0) or (year mod 400 = 0)
+       then cnt_day_in_mon := 29
+       else cnt_day_in_mon := 28;
+    4,6,9,11:cnt_day_in_mon := 30;
+  else cnt_day_in_mon := 31;
+  end;
+end;
+function cnt_days_in_year(year:longint):longint;
+begin
+  if (year mod 4 = 0) and (year mod 100 <> 0) or (year mod 400 = 0)
+  then cnt_days_in_year := 366
+  else cnt_days_in_year := 365;
+end;
+
+function is_prime(N:longint):boolean;
+var i:longint;
+begin
+  i := 3;
+  if (N = 2) or (N = 3)
+  then is_prime := true
+  else if (N mod 2 = 0) or (N <= 1)
+       then is_prime := false
+       else begin
+         while (sqr(i) <= N) and (N mod i <> 0) do
+         begin
+           i := i + 2;
+         end;
+         if N mod i <> 0 
+         then is_prime := true
+         else is_prime := false;
+       end;
+end;
+
+
+
+
 procedure line_char(n:longint; border,fill_char:char);
 var i:longint;
 begin
