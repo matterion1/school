@@ -1,4 +1,3 @@
-var price_w, price_b, total:longint;
 
 function max_price(price_w, price_b, total:longint):longint;
 var max_flowers, leftover, max_black, diff:longint;
@@ -12,6 +11,8 @@ begin
   max_price := max_flowers * price_w + max_black * diff;
   
 end;
+
+var price_w, price_b, total:longint;
 
 
 begin

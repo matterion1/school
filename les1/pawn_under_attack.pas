@@ -1,4 +1,3 @@
-var row_p, col_p, row_f, col_f:longint;
 
 
 function can_bish(r1, c1, r2, c2:longint):boolean;
@@ -22,6 +21,7 @@ begin
 end;
 
 
+var row_p, col_p, row_f, col_f:longint;
 
 
 
