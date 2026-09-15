@@ -2,6 +2,8 @@ type Tarr = array[1..100] of longint;
 
 
 
+
+
 function sum_dig(N:longint):longint;
 var res:longint;
 begin
@@ -15,17 +17,24 @@ begin
   sum_dig := res;
 end;
 
+
+function comparator(a, b:longint):boolean;
+begin
+  comparator := false;
+  if sum_dig(a) > sum_dig(b)
+  then comparator := true
+  else if (sum_dig(a) = sum_dig(b)) and (a > b)
+       then comparator := true;
+end;
+
 function max_sum_dig(var arr:Tarr; N:longint):longint;
 var i,etalon:longint;
 begin
   etalon := 1;
   for i := 2 to N do
   begin
-    if sum_dig(arr[i]) > sum_dig(arr[etalon])
-    then etalon := i
-    else if sum_dig(arr[i]) = sum_dig(arr[etalon])
-         then if arr[i] > arr[etalon]
-              then etalon := i;
+    if comparator(arr[i], arr[etalon])
+    then etalon := i;
   end;
   max_sum_dig := etalon;
 end;
@@ -37,11 +46,8 @@ begin
   etalon := 1;
   for i := 2 to N do
   begin
-    if sum_dig(arr[i]) < sum_dig(arr[etalon])
-    then etalon := i
-    else if sum_dig(arr[i]) = sum_dig(arr[etalon])
-         then if arr[i] < arr[etalon]
-              then etalon := i;
+    if comparator(arr[etalon], arr[i])
+    then etalon := i;
   end;
   min_sum_dig := etalon;
 end;
