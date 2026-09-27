@@ -46,7 +46,7 @@ end;
 
 
 
-var arr1, arr2, res:Tarr; n1, n2, i:longint;
+var arr1, arr2, res:Tarr; n1, n2:longint;
 begin
   read_arr(arr1, n1);
   read_arr(arr2, n2);
