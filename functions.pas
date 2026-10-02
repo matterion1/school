@@ -228,3 +228,22 @@ begin
     end;
   end;
 end;
+
+
+procedure bubble(var arr:Tarr; N:longint);
+var i:longint; sorted:boolean;
+begin
+  sorted := false;
+  while (not sorted) do
+  begin
+    sorted := true;
+    for i := 1 to N - 1 do
+    begin
+      if arr[i] > arr[i + 1]
+      then begin
+        swap(arr[i], arr[i + 1])
+        sorted := false;
+      end;
+    end;
+  end;
+end.
