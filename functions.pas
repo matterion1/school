@@ -231,13 +231,12 @@ end;
 
 
 procedure bubble(var arr:Tarr; N:longint);
-var i:longint; sorted:boolean;
+var i, j:longint; 
 begin
-  sorted := false;
-  while (not sorted) do
+  for i := 1 to N -1 do
   begin
     sorted := true;
-    for i := 1 to N - 1 do
+    for j := 1 to N - i do
     begin
       if arr[i] > arr[i + 1]
       then begin
