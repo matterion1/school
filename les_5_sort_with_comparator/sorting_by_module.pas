@@ -39,17 +39,23 @@ end;
 
 
 procedure bubble(var arr:Tarr; N:longint);
-var i, j:longint; 
+var i:longint; sorted:boolean;
 begin
-  for i := 1 to N -1 do
+  sorted := false;
+  while (not sorted) do
   begin
-    for j := 1 to N - i do
+    sorted := true;
+    for i := 1 to N - 1 do
     begin
-      if compare(arr[j], arr[j + 1])
-      then swap(arr[j], arr[j + 1])
+      if compare(arr[i], arr[i + 1])
+      then begin
+        swap(arr[i], arr[i + 1]);
+        sorted := false;
+      end;
     end;
   end;
 end;
+
 
 
 
