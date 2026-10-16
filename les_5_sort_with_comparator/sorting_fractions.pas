@@ -1,42 +1,43 @@
-type Tarr = array[1..200] of longint;
+type Tfrac = array[1..2] of longint;
+type Tarr = array[1..100] of Tfrac;
 
-procedure swap(var x,y:longint);
-var temp:longint;
+procedure swap(var a, b:Tfrac);
+var temp:Tfrac;
 begin
-  temp := x;
-  x := y;
-  y := temp;
+  temp := a;
+  a := b;
+  b := temp;
 end;
 
-
-procedure write_arr(var arr_num, arr_den:Tarr; var N:longint);
-var i :longint;
+procedure read_arr(var arr:Tarr; var N:longint);
+var i:longint;
 begin
+  read(N);
   for i := 1 to N do
   begin
-    writeln(arr_num[i], ' ', arr_den[i]);
-  end;
-  writeln();
-end;
-
-procedure read_arr(var arr_num, arr_den:Tarr; N:longint);
-var i :longint;
-begin
-  for i := 1 to N do
-  begin
-    read(arr_num[i], arr_den[i]);
+    read(arr[i, 1], arr[i, 2]);
   end;
 end;
 
-function compare(arr_num, arr_den:Tarr; a, b:longint):boolean;
+procedure write_arr(var arr:Tarr; N:longint);
+var  i:longint;
 begin
-  if (arr_den[a] < 0) = (arr_den[b] < 0)
-  then compare := arr_num[a] * arr_den[b] > arr_num[b] * arr_den[a]
-  else compare := arr_num[a] * arr_den[b] < arr_num[b] * arr_den[a] 
+  for i := 1 to N do
+  begin
+    writeln(arr[i, 1],' ' ,arr[i, 2]);
+  end;
 end;
 
 
-procedure bubble(var arr_num, arr_den:Tarr; N:longint);
+function compare(a, b:Tfrac):boolean;
+begin
+  if (a[2] < 0) = (b[2] < 0)
+  then compare := a[1] * b[2] > a[2] * b[1]
+  else compare := a[1] * b[2] < a[2] * b[1]
+end;
+
+
+procedure bubble(var arr:Tarr; N:longint);
 var i:longint; sorted:boolean;
 begin
   sorted := false;
@@ -45,10 +46,9 @@ begin
     sorted := true;
     for i := 1 to N - 1 do
     begin
-      if compare(arr_num, arr_den, i, i + 1)
+      if compare(arr[i], arr[i + 1])
       then begin
-        swap(arr_den[i], arr_den[i + 1]);
-        swap(arr_num[i], arr_num[i + 1]);
+        swap(arr[i], arr[i + 1]);
         sorted := false;
       end;
     end;
@@ -56,13 +56,9 @@ begin
 end;
 
 
-
-
-
-var arr_num, arr_den:Tarr; N:longint;
+var arr:Tarr; N:longint;
 begin
-  read(N);
-  read_arr(arr_num, arr_den, N);
-  bubble(arr_num, arr_den, N);
-  write_arr(arr_num, arr_den, N);
+  read_arr(arr, N);
+  bubble(arr, N);
+  write_arr(arr, N);
 end.
