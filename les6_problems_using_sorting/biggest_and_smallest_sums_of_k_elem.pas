@@ -40,33 +40,23 @@ begin
 end;
 
 
-function biggest_sum_k_elem(arr:Tarr; N, k:longint):longint;
+function sum_on_segment(arr:Tarr; N, left, right:longint):longint;
 var i, sum:longint;
 begin
   sum := 0;
-  for i := N downto N - k + 1 do
+  for i := left to right do
   begin
     sum := sum + arr[i]
   end;
-  biggest_sum_k_elem := sum;
+  sum_on_segment := sum;
 end;
 
-function smallest_sum_k_elem(arr:Tarr; N, k:longint):longint;
-var i, sum:longint;
-begin
-  sum := 0;
-  for i := 1 to  k do
-  begin
-    sum := sum + arr[i]
-  end;
-  smallest_sum_k_elem := sum;
-end;
+
 
 var arr:Tarr; N, cnt_elem:longint;
 begin
   read_arr(arr, N);
   read(cnt_elem);
   bubble(arr, N);
-  write(smallest_sum_k_elem(arr, N, cnt_elem), ' ', biggest_sum_k_elem(arr, N, cnt_elem));
+  write(sum_on_segment(arr, N, 1, cnt_elem), ' ', sum_on_segment(arr, N, N - cnt_elem + 1, N));
 end.
-
