@@ -248,3 +248,31 @@ begin
   end;
 end;
 
+
+
+procedure selection(var arr:Tarr; N:longint);
+var i, index:longint;
+begin
+  for i:=N downto 2 do
+  begin
+    index := max_element(arr,i);
+    swap(arr[i],arr[index]);
+  end;
+end;
+
+
+procedure insertion (var arr:Tmas;N:longint);
+var i, j, etalon:longint;
+begin
+  for i:=2 to N do
+  begin
+    j:=i-1;
+    etalon:=arr[i];
+    while (j&gt;=1)and(arr[j]&gt;etalon) do
+    begin
+      arr[j+1]:=arr[j];
+      dec(j);
+    end;
+    arr[j+1]:=etalon;
+  end;
+end;
